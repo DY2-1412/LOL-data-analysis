@@ -1,0 +1,65 @@
+# 导入相关包
+import numpy as np
+import pandas as pd
+from pandas import plotting
+
+%matplotlib inline
+import matplotlib.pyplot as plt
+plt.style.use('seaborn')
+
+import seaborn as sns
+sns.set_style("whitegrid")
+
+from sklearn.linear_model import LogisticRegression 
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm
+from sklearn import metrics 
+from sklearn.tree import DecisionTreeClassifier
+
+# 导入数据集
+train = pd.read_csv(r'D:\Desktop\project_1\new_data.csv')
+test = pd.read_csv(r'D:\Desktop\project_1\test_set.csv')
+
+#查看数据集信息
+train.info()
+test.info()
+
+#查看数据集头五条记录
+train.head()
+
+# 载入特征和标签集
+X1 = train[['creationTime', 'gameDuration', 'seasonId', 'firstBlood', 'firstTower', 'firstInhibitor',
+            'firstBaron', 'firstDragon', 'firstRiftHerald', 't1_towerKills', 't1_inhibitorKills', 't1_baronKills', 't1_dragonKills', 
+            't1_riftHeraldKills', 't2_towerKills', 't2_inhibitorKills', 't2_baronKills', 't2_dragonKills', 't2_riftHeraldKills']]
+y1 = train['winner']
+# 载入特征和标签集
+X2 = test[['creationTime', 'gameDuration', 'seasonId', 'firstBlood', 'firstTower', 'firstInhibitor',
+            'firstBaron', 'firstDragon', 'firstRiftHerald', 't1_towerKills', 't1_inhibitorKills', 't1_baronKills', 't1_dragonKills', 
+            't1_riftHeraldKills', 't2_towerKills', 't2_inhibitorKills', 't2_baronKills', 't2_dragonKills', 't2_riftHeraldKills']]
+y2 = test['winner']
+
+# Support Vector Machine
+model = svm.SVC()
+model.fit(X1, y1)
+prediction = model.predict(X2)
+print('The accuracy of the SVM is: {0}'.format(metrics.accuracy_score(prediction,y2)))
+
+# Logistic Regression
+model = LogisticRegression()
+model.fit(X1, y1)
+prediction = model.predict(X2)
+print('The accuracy of the Logistic Regression is: {0}'.format(metrics.accuracy_score(prediction,y2)))
+
+# Decision Tree
+model=DecisionTreeClassifier()
+model.fit(X1, y1)
+prediction = model.predict(X2)
+print('The accuracy of the Decision Tree is: {0}'.format(metrics.accuracy_score(prediction,y2)))
+
+# K-Nearest Neighbours
+model=KNeighborsClassifier(n_neighbors=3)
+model.fit(X1, y1)
+prediction = model.predict(X2)
+print('The accuracy of the KNN is: {0}'.format(metrics.accuracy_score(prediction,y2)))
