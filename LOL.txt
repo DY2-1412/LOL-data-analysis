@@ -30,12 +30,12 @@ test.info()
 train.head()
 
 # 载入特征和标签集
-X1 = train[['creationTime', 'gameDuration', 'seasonId', 'firstBlood', 'firstTower', 'firstInhibitor',
+X1 = train[['gameDuration', 'seasonId', 'firstBlood', 'firstTower', 'firstInhibitor',
             'firstBaron', 'firstDragon', 'firstRiftHerald', 't1_towerKills', 't1_inhibitorKills', 't1_baronKills', 't1_dragonKills', 
             't1_riftHeraldKills', 't2_towerKills', 't2_inhibitorKills', 't2_baronKills', 't2_dragonKills', 't2_riftHeraldKills']]
 y1 = train['winner']
 # 载入特征和标签集
-X2 = test[['creationTime', 'gameDuration', 'seasonId', 'firstBlood', 'firstTower', 'firstInhibitor',
+X2 = test[['gameDuration', 'seasonId', 'firstBlood', 'firstTower', 'firstInhibitor',
             'firstBaron', 'firstDragon', 'firstRiftHerald', 't1_towerKills', 't1_inhibitorKills', 't1_baronKills', 't1_dragonKills', 
             't1_riftHeraldKills', 't2_towerKills', 't2_inhibitorKills', 't2_baronKills', 't2_dragonKills', 't2_riftHeraldKills']]
 y2 = test['winner']
